@@ -16,6 +16,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: "Manage Data Files We'll Need"
+          command: |
+            ./scripts/pull-docker-tags.sh
+      - run:
           name: "Build Website With Hugo"
           command: HUGO_ENV=production hugo -v -s src/
       - run:

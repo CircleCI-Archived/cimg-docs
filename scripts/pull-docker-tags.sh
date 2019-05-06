@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 declare -A bundles;							declare -a ordered;
-bundles[ruby]="Base";						ordered+=( "base" )
+bundles[base]="Base";						ordered+=( "base" )
 #bundles[android]="Android";					ordered+=( "android" )
 #bundles[buildpack-deps]="buildpack-deps";	ordered+=( "buildpack-deps" )
 #bundles[clojure]="Clojure";					ordered+=( "clojure" )
@@ -26,27 +26,15 @@ echo "{" > src/data/tags.json
 i=1
 
 for image in "${ordered[@]}"; do
-	tags=$(curl -X GET "https://registry.hub.docker.com/v1/repositories/circleciimages/$image/tags" | jq ".[].name")
+	tags=$(curl -X GET "https://hub.docker.com/v2/repositories/circleciimages/${image}/tags/?page_size=100" | jq '[.results[] | {"tag": .name, "last_updated": .last_updated}]')
 	numTags=$( echo $tags | wc -w)
 
 	echo -e "\t\"$image\": {" >> src/data/tags.json
 	echo -e "\t\t\"name\": \"${bundles[$image]}\"," >> src/data/tags.json
-	echo -e "\t\t\"tags\": [" >> src/data/tags.json
+	echo -e "\t\t\"tags\":" >> src/data/tags.json
+	echo -e "${tags}" >> src/data/tags.json
 
-	j=1
-	for tag in $tags; do
-		if (( $j < $numTags ));then
-			echo -e "\t\t\t${tag}," >> src/data/tags.json
-		else
-			echo -e "\t\t\t${tag}" >> src/data/tags.json
-		fi
-
-		((j+=1))
-	done
-
-	echo -e "\t\t]" >> src/data/tags.json
-
-	if (( $i <= ${#bundles[@]} ));then
+	if (( $i < ${#bundles[@]} ));then
 		echo -e "\t}," >> src/data/tags.json
 	else
 		echo -e "\t}" >> src/data/tags.json
