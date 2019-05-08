@@ -1,4 +1,4 @@
-baseURL = "http://image-docs.circleci.io/"
+baseURL = "https://image-docs.circleci.io/"
 languageCode = "en-us"
 title = "CircleCI Image Docs"
 theme = "example-1"
