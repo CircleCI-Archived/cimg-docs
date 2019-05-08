@@ -9,6 +9,18 @@ workflows:
           filters:
             branches:
               only: master
+  nightly-build:
+    triggers:
+      - schedule:
+          cron: "0 6 * * *"
+          filters:
+            branches:
+              only: master
+    jobs:
+      - build
+      - deploy-staging:
+          requires:
+            - build
 jobs:
   build:
     docker:
