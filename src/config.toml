@@ -1,0 +1,35 @@
+baseURL = "https://image-docs.circleci.io/"
+languageCode = "en-us"
+title = "CircleCI Image Docs"
+theme = "example-1"
+
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsUseClasses = true
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "Docker Images"
+    url = "/docker-images/"
+    weight = 2
+
+[[menu.main]]
+    name = "Linux VMs"
+    url = "/linux-vms/"
+    weight = 3
+
+[[menu.main]]
+    name = "Windows VMs"
+    url = "/windows-vms/"
+    weight = 4
+
+[params]
+  google_analytics_id=""
+
+  [params.logo]
+      mobile = "/images/logo-mobile.svg"
+      standard  = "/images/logo.svg"
