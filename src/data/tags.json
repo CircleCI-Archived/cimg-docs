@@ -1,18 +1,21 @@
 {
   "base": {
     "name": "Base",
-    "tags": [{
+    "tags": [
+      {
         "tag": "node",
         "last_updated": "2019-04-25T14:56:09.871443Z"
       },
       {
         "tag": "latest",
         "last_updated": "2019-04-25T14:55:59.724292Z"
-      }]
+      }
+    ]
   },
   "golang": {
     "name": "Go (Golang)",
-    "tags": [{
+    "tags": [
+      {
         "tag": "1.12.5",
         "last_updated": "2019-05-07T16:50:44.451421Z"
       },
@@ -43,7 +46,8 @@
       {
         "tag": "1.12.2",
         "last_updated": "2019-04-25T17:28:44.142199Z"
-      }]
+      }
+    ]
   },
   "ruby": {
     "name": "Ruby",
